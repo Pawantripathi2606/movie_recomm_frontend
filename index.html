@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="AI-powered movie recommendation system — discover your next favorite film instantly." />
+  <title>CineMatch — Movie Recommendations</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="logo" aria-label="CineMatch home">
+        <span class="logo-icon">🎬</span>
+        <span class="logo-text">Cine<span class="logo-accent">Match</span></span>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ── Hero Section ───────────────────────────────────────── -->
+  <header class="hero" role="banner">
+    <div class="hero-bg-particles" aria-hidden="true">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="hero-content">
+
+      <h1 class="hero-title">
+        Discover Your<br />
+        <span class="gradient-text">Next Favorite</span><br />
+        Movie
+      </h1>
+      <p class="hero-subtitle">
+        Type any movie title and our AI engine finds the most similar films
+        just for you.
+      </p>
+
+      <!-- ── Search Bar ──────────────────────────────────────── -->
+      <div class="search-container" role="search">
+        <div class="search-box" id="search-box">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="text" id="movie-input" class="search-input"
+            placeholder="e.g. Inception, The Dark Knight, Interstellar..." autocomplete="off" spellcheck="false"
+            aria-label="Enter a movie title" aria-autocomplete="list" aria-controls="autocomplete-list" />
+          <button id="recommend-btn" class="search-btn" aria-label="Get recommendations">
+            <span class="btn-text">Recommend</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- Autocomplete dropdown -->
+        <ul id="autocomplete-list" class="autocomplete-list" role="listbox" aria-label="Movie suggestions" hidden></ul>
+      </div>
+
+      <!-- Quick examples -->
+      <div class="quick-picks" aria-label="Quick example searches">
+        <span class="quick-label">Try:</span>
+        <button class="quick-btn" data-movie="Inception">Inception</button>
+        <button class="quick-btn" data-movie="The Dark Knight">The Dark Knight</button>
+        <button class="quick-btn" data-movie="Avengers">Avengers</button>
+        <button class="quick-btn" data-movie="Interstellar">Interstellar</button>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-dot"></span>
+    </div>
+  </header>
+
+  <!-- ── Main Content ────────────────────────────────────────── -->
+  <main class="main-content" id="results-section" role="main">
+
+    <!-- Loading state -->
+    <div class="loading-container" id="loading" hidden aria-live="polite" aria-label="Loading recommendations">
+      <div class="loading-inner">
+        <div class="spinner-ring"></div>
+        <div class="loading-text">Finding recommendations<span class="dots"></span></div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="error-container" id="error-box" hidden role="alert" aria-live="assertive">
+      <div class="error-inner">
+        <div class="error-emoji">🎭</div>
+        <h2 class="error-title">Oops!</h2>
+        <p class="error-message" id="error-message"></p>
+        <button class="retry-btn" id="retry-btn">Try Again</button>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <section class="results-container" id="results" hidden aria-label="Recommended movies">
+      <div class="results-header">
+        <h2 class="results-title">
+          Recommended for <span class="query-highlight" id="query-title"></span>
+        </h2>
+        <div class="results-count" id="results-count"></div>
+      </div>
+      <div class="movies-grid" id="movies-grid" role="list"></div>
+    </section>
+
+    <!-- Empty / Initial state -->
+    <div class="empty-state" id="empty-state" aria-label="Welcome message">
+      <div class="empty-illustration" aria-hidden="true">🎥</div>
+      <h2 class="empty-title">What are you in the mood for?</h2>
+      <p class="empty-subtitle">Enter a film you love and we'll find movies you'll adore.</p>
+      <div class="feature-pills" aria-label="Features">
+        <span class="pill">🤖 AI Powered</span>
+        <span class="pill">🎭 10,000+ Movies</span>
+        <span class="pill">⚡ Instant Results</span>
+        <span class="pill">🎯 High Accuracy</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Movie Card Template ─────────────────────────────────── -->
+  <template id="movie-card-template">
+    <article class="movie-card" role="listitem">
+      <div class="card-poster-wrapper">
+        <img class="card-poster" src="" alt="" loading="lazy" />
+        <div class="card-poster-placeholder" aria-hidden="true"></div>
+        <div class="card-overlay">
+          <div class="card-rating">
+            <span class="star">★</span>
+            <span class="rating-value"></span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title"></h3>
+        <p class="card-date"></p>
+        <p class="card-overview"></p>
+      </div>
+    </article>
+  </template>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

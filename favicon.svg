@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#070b14"/>
+  <rect x="8" y="18" width="48" height="30" rx="4" fill="#e50914"/>
+  <!-- clapperboard stripes -->
+  <rect x="8" y="18" width="48" height="10" rx="4" fill="#111827"/>
+  <rect x="14" y="18" width="6" height="10" fill="#e50914"/>
+  <rect x="26" y="18" width="6" height="10" fill="#e50914"/>
+  <rect x="38" y="18" width="6" height="10" fill="#e50914"/>
+  <!-- film holes left -->
+  <circle cx="13" cy="35" r="3" fill="#070b14"/>
+  <circle cx="13" cy="45" r="3" fill="#070b14"/>
+  <!-- film holes right -->
+  <circle cx="51" cy="35" r="3" fill="#070b14"/>
+  <circle cx="51" cy="45" r="3" fill="#070b14"/>
+  <!-- CM text -->
+  <text x="32" y="47" font-family="Arial Black,Arial" font-weight="900" font-size="13" fill="white" text-anchor="middle">CM</text>
+</svg>
