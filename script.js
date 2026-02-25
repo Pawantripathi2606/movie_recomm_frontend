@@ -16,7 +16,7 @@
 // Local dev  → "http://localhost:8000"
 // Production → "https://your-app.onrender.com"
 // ─────────────────────────────────────────────────────────────
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://movie-recomm-backend-md34.onrender.com";
 
 // ─────────────────────────────────────────────────────────────
 // DOM References
